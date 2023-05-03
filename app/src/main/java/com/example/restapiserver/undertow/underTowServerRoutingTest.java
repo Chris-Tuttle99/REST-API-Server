@@ -1,25 +1,20 @@
-package com.example.restapiserver;
+package com.example.restapiserver.undertow;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
 
-import androidx.room.Room;
-
+import com.example.restapiserver.entity.Order;
+import com.example.restapiserver.data.OrderDao;
+import com.example.restapiserver.data.OrderDatabase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.undertow.Handlers;
 import io.undertow.Undertow;
-import io.undertow.attribute.ExchangeAttributes;
 import io.undertow.io.Receiver;
-import io.undertow.predicate.Predicates;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 
@@ -40,7 +35,7 @@ public class underTowServerRoutingTest extends AsyncTask {
         mContext=context;
     }
 
-    OrderDao db=OrderDatabase.getInstance(mContext).orderDao();
+    OrderDao db= OrderDatabase.getInstance(mContext).orderDao();
 
 
 

@@ -1,28 +1,17 @@
-package com.example.restapiserver;
+package com.example.restapiserver.undertow;
 
 
 import android.os.AsyncTask;
 
-import androidx.loader.content.AsyncTaskLoader;
-
 import io.undertow.Handlers;
 import io.undertow.Undertow;
-import io.undertow.attribute.ExchangeAttribute;
-import io.undertow.attribute.ExchangeAttributes;
 import io.undertow.io.Receiver;
-import io.undertow.predicate.Predicates;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
-import io.undertow.util.Headers;
-import io.undertow.util.HttpString;
-import spark.Spark;
 
-import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.Predicate;
 
-import static spark.Spark.*;
+import com.example.restapiserver.entity.Order;
 
 public class underTowServer extends AsyncTask {
     //create server in the main activity file with:

@@ -78,7 +78,7 @@ public class Request extends AsyncTask<String, Void, Void> {
 
 
                 //TEST
-                System.out.println("endpoint: "+requestType[1]);
+                //System.out.println("endpoint: "+requestType[1]);
                 //System.out.println("BEFORE RESULT");
                 //TEST
                 System.out.println(result);

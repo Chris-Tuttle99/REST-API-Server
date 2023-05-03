@@ -1,4 +1,4 @@
-package com.example.restapiserver;
+package com.example.restapiserver.data;
 
 import android.content.Context;
 
@@ -6,13 +6,15 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.restapiserver.entity.Order;
+
 @Database(entities = {Order.class}, version=1)
 public abstract class OrderDatabase extends RoomDatabase {
     public abstract OrderDao orderDao();
 
-    private static volatile OrderDatabase INSTANCE;
+    public static volatile OrderDatabase INSTANCE;
 
-    static OrderDatabase getInstance(Context context){
+    public static OrderDatabase getInstance(Context context){
         if(INSTANCE==null){
             synchronized (OrderDatabase.class){
                 if(INSTANCE==null){

@@ -1,4 +1,4 @@
-package com.example.restapiserver;
+package com.example.restapiserver.routes;
 
 import static spark.Spark.path;
 import static spark.Spark.get;

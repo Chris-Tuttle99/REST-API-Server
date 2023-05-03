@@ -1,4 +1,4 @@
-package com.example.restapiserver;
+package com.example.restapiserver.nanohttp;
 
 import fi.iki.elonen.NanoHTTPD;
 import java.io.IOException;

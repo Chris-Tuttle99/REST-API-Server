@@ -1,4 +1,4 @@
-package com.example.restapiserver;
+package com.example.restapiserver.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
