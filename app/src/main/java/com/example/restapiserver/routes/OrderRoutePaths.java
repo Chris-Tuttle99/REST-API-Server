@@ -10,6 +10,7 @@ import com.example.restapiserver.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
 
 public class OrderRoutePaths {
 
@@ -20,14 +21,8 @@ public class OrderRoutePaths {
             //TODO add logging code: -----
             path("/order",()-> { //ALL order endpoints
                 get("/", (request, response) -> {
-                    //response.type("application/json");
-                    //TODO this endpoint
-                    //Process:
-                    //in get all from Order Service
-                    //turn into one big JSON object
-                    //return
-                    //use this class and UndertowServerRoutingTest as examples
-                    return "GET Order/ endpoint";
+                    response.type("application/json");
+                    return convertToJson(orderService.getAll());
                 });
                 post("/", (request, response) ->{
                     response.type("application/json");
@@ -51,26 +46,40 @@ public class OrderRoutePaths {
                 get("/:orderId", (request, response) -> {
                     response.type("application/json");
                     int id=Integer.parseInt(request.params(":orderId"));
-                    Order order = orderService.getOrderById(id);
-                    System.out.println(id);
-                    //Convert Order to JSON -- using Jackson
-                    String prettyJson="";
-                    ObjectMapper mapper = new ObjectMapper();
-                    try{
-                        prettyJson= mapper.writerWithDefaultPrettyPrinter().writeValueAsString(order);
-
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-                    //TODO return Order Json AND Status Code
-                    return prettyJson;
+                    return convertToJson(orderService.getOrderById(id));
                 });
                 get("/table/:tableId", (request, response) -> {
-                    //response.type
-                    //use this class and this endpoint from UndertowServerRoutingTest as examples
-                    return "GET /table/tableId";
+                    response.type("application/json");
+                    int id = Integer.parseInt(request.params(":tableId"));
+                    return convertToJson(orderService.getOrderByTable(id));
                 });
             });
         } );
+    }
+
+    private static String convertToJson(List<Order> orders){
+        String prettyJson="";
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+            prettyJson= mapper.writerWithDefaultPrettyPrinter().writeValueAsString(orders);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return prettyJson;
+    }
+
+    private static String convertToJson(Order order){
+        String prettyJson="";
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+            prettyJson= mapper.writerWithDefaultPrettyPrinter().writeValueAsString(order);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return prettyJson;
     }
 }

@@ -2,7 +2,9 @@ package com.example.restapiserver.service;
 
 import com.example.restapiserver.entity.Order;
 import com.example.restapiserver.data.OrderDao;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class OrderService {
@@ -24,7 +26,14 @@ public class OrderService {
         return order;
     }
 
+    public List<Order> getOrderByTable(int id){
+        List<Order> orders = db.findByTableId(id);
+        return orders;
+    }
+
     public void addOrder(Order o){
         db.insertAll(o);
     }
+
+
 }
