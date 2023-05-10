@@ -6,10 +6,11 @@ public class TimeCard {
     private String lastPunchIn;
     private String lastPunchOut; //?? need to fix these
 
-    public TimeCard(){
-
+    public TimeCard(int id){
+        this.id=id;
     }
 
-
-
+    public int getId() {
+        return id;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.restapiserver;
 
 import static spark.Spark.get;
+import static spark.Spark.webSocket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        //below configures routes for a spark server that will run at :4567
+        //below configures routes for a Spark server that will run at :4567
         //-----------------------------------------------------------------------------------
+        //set up endpoint that will receive websocket connections, SparkWebSocket is the WS handler
+        webSocket("/echo",SparkWebSocket.class);
+        //server routes for REST API
         OrderRoutePaths.registerRoutes(db);
-        TimeEntryPaths.registerRoutes();
+        TimeEntryPaths.registerRoutes(db);
         //------------------------------------------------------------------------------------
 
 
@@ -79,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
     public void getRequest(View view){ //getBtn
         new Request().execute("GET","http://localhost:4567/api/order/");
     }
-    public void getTimeRequest(View view){ //timeBtn
-        new Request().execute("GET","http://localhost:4567/api/time-card/");
+    public void getTimeRequest(View view){ //a3 timeBtn
+        new Request().execute("GET","http://localhost:4567/echo");
+        //http://localhost:4567/api/time-card/
     }
     public void getOrderById(View view){ //btnGetOrder
         //TODO error handling for empty input

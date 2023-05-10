@@ -27,7 +27,6 @@ public class OrderRoutePaths {
                 post("/", (request, response) ->{
                     response.type("application/json");
                     //request.body is a json string of an Order that needs to be added to DB
-
                     //convert JSON to Order object -- using Jackson
                     Order order;
                     String prettyAnswer="";
@@ -40,8 +39,9 @@ public class OrderRoutePaths {
                     }catch(IOException e){
                         e.printStackTrace();
                     }
-                    //TODO return Json AND status code
+
                     return prettyAnswer;
+
                 });
                 get("/:orderId", (request, response) -> {
                     response.type("application/json");
@@ -56,6 +56,7 @@ public class OrderRoutePaths {
             });
         } );
     }
+
 
     private static String convertToJson(List<Order> orders){
         String prettyJson="";
